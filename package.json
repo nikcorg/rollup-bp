@@ -1,0 +1,38 @@
+{
+  "name": "rollup-bp",
+  "version": "1.0.0",
+  "description": "Rollup Boilerplate",
+  "config": {
+    "main": "./src/index.js",
+    "bundle": "./pub/bundle-complete.js",
+    "port": "3333"
+  },
+  "scripts": {
+    "watch": "watchify -o $npm_package_config_bundle $npm_package_config_main",
+    "build": "browserify -o $npm_package_config_bundle $npm_package_config_main",
+    "build:min": "npm run build -- -g uglifyify",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve pub -p ${npm_package_config_port}"
+  },
+  "keywords": [],
+  "author": "Niklas Lindgren <niklas.lindgren@iki.fi>",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "rollup-plugin-buble": "^0.14.0",
+    "rollupify": "^0.3.5",
+    "serve": "^1.4.0",
+    "uglifyify": "^3.0.4",
+    "watchify": "^3.7.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "rollupify",
+        {
+          "config": "rollup.config.js"
+        }
+      ]
+    ]
+  }
+}
